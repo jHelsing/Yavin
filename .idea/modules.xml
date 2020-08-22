@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Yavin.iml" filepath="$PROJECT_DIR$/.idea/Yavin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Yavin.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Yavin.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Yavin.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Yavin.test.iml" />
     </modules>
   </component>
 </project>
