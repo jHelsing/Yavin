@@ -29,4 +29,5 @@ test {
     testLogging {
         events "passed", "skipped", "failed"
     }
+    systemProperty("SPRING_CONFIG_NAME", "test")
 }
