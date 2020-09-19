@@ -9,25 +9,25 @@ import java.util.concurrent.atomic.AtomicLong;
 @RestController
 public class SnippetController {
 
-    private final AtomicLong counter = new AtomicLong();
+  private final AtomicLong counter = new AtomicLong();
 
-    @GetMapping("/snippets")
-    public List<Snippet> listSnippets() throws Exception {
-        throw new Exception();
-    }
+  @GetMapping("/snippets")
+  public List<Snippet> listSnippets() throws Exception {
+    throw new Exception();
+  }
 
-    @PutMapping("/snippets")
-    public Snippet createNewSnippet() throws Exception {
-        throw new Exception();
-    }
+  @PutMapping("/snippets")
+  public Snippet createNewSnippet() throws Exception {
+    throw new Exception();
+  }
 
-    @PostMapping("/snippets")
-    public Snippet updateSnippet(@RequestBody Snippet incoming) {
-        return new Snippet(counter.getAndIncrement(), "hej");
-    }
+  @PostMapping("/snippets")
+  public Snippet updateSnippet(@RequestBody Snippet incoming) {
+    return new Snippet(counter.getAndIncrement(), "hej");
+  }
 
-    @DeleteMapping("/snippets/")
-    public void deleteSnippet() throws Exception {
-        throw new Exception();
-    }
+  @DeleteMapping("/snippets/")
+  public void deleteSnippet() throws Exception {
+    throw new Exception();
+  }
 }
