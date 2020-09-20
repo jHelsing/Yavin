@@ -90,4 +90,8 @@ public class Snippet extends RepresentationModel<Snippet> {
     this.setContent(newSnippet.getContent());
     this.setModified(LocalDateTime.now(Clock.systemUTC()));
   }
+
+  public boolean isValid() {
+    return false;
+  }
 }

@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class HttpError extends RuntimeException {
+public class HttpErrorException extends Exception {
 
   /**
    * A URI reference that goes to a documentation notice on the error type.
@@ -25,9 +25,9 @@ public class HttpError extends RuntimeException {
   private String title;
 
   // Default constructor for Lombok.
-  public HttpError() {}
+  public HttpErrorException() {}
 
-  public HttpError(String type, String title) {
+  public HttpErrorException(String type, String title) {
     this.type = type;
     this.title = title;
   }

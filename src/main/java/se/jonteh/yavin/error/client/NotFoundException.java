@@ -1,11 +1,12 @@
-package se.jonteh.yavin.error;
+package se.jonteh.yavin.error.client;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import se.jonteh.yavin.error.HttpErrorException;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class SnippetNotFound extends HttpError {
+public class NotFoundException extends HttpErrorException {
 
   private static final String TYPE_URI = "";
   private static final String TITLE = "Snippet not found with given id";
@@ -21,11 +22,11 @@ public class SnippetNotFound extends HttpError {
   private String instance;
 
   // Default constructor for Lombok.
-  public SnippetNotFound() {
+  public NotFoundException() {
     super();
   }
 
-  public SnippetNotFound(String instance, String detail) {
+  public NotFoundException(String instance, String detail) {
     super(TYPE_URI, TITLE);
     this.instance = instance;
     this.detail = detail;
