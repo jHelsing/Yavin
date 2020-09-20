@@ -39,11 +39,11 @@ The following [guide](https://medium.com/devops-dudes/securing-spring-boot-rest-
 was used during development of the authentication and Keycloak integration.
 
 # ToDo
+- [] Introduce traceability to Snippets and Users
+  - [x] Add created and modified date to Snippets
+  - [] Add firstAccess and lastAccess date to users
 - [] Implement the endpoints that we have now, so that they are correct and 
   only show what they should.
-- [] Introduce tracability to Snippets and Users
-  - [] Add created and modified date to Snippets
-  - [] Add firstAccess and lastAccess date to users
 - [] Add HATEOAS support, see further 
   - [] https://spring.io/guides/gs/rest-hateoas/
   - [] https://spring.io/guides/tutorials/bookmarks/
