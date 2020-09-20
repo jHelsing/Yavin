@@ -1,7 +1,13 @@
 package se.jonteh.yavin;
 
+import java.time.Clock;
+import java.time.Instant;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import javax.annotation.security.RolesAllowed;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -35,14 +41,28 @@ public class SnippetController {
     return snippet.get();
   }
 
+  @RolesAllowed({"user"})
   @PutMapping("/snippets")
-  public void createNewSnippet(@RequestBody Snippet newSnippet, HttpServletResponse response) {
+  public void createNewSnippet(@RequestBody Snippet newSnippet, HttpServletRequest request, HttpServletResponse response) {
     validate(newSnippet);
-    // TODO solve how we should handle users in the snippets repo. How are they added?
-    //  How do we check they are correct?
-    //  Maybe helps if we check how to handle auth?
+
+    // Identify if user exists in users table
+    UUID callingUUID = UUID.fromString(request.getRemoteUser());
+    Optional<User> optUser = userRepo.findById(callingUUID);
+    User caller;
+    if (optUser.isEmpty()) {
+      // TODO log here that we have a first-time caller
+      User newUser = new User(callingUUID);
+      caller = userRepo.save(newUser);
+    } else {
+      caller = optUser.get();
+    }
+
     // Prep the snippet
-    newSnippet.setOwner(new User(UUID.randomUUID()));
+    newSnippet.setOwner(caller);
+    snippetRepo.save(newSnippet);
+    caller.addSnippet(newSnippet);
+    userRepo.save(caller);
     response.setStatus(HttpServletResponse.SC_CREATED);
   }
 
@@ -64,6 +84,16 @@ public class SnippetController {
 
     // TODO check what should be returned from an update request
     return null;
+  }
+
+  @RolesAllowed("user")
+  @GetMapping("/snippets")
+  public List<Snippet> getAllSnippets() {
+    List<Snippet> snippets = new LinkedList<>();
+    for (Snippet snippet : snippetRepo.findAll()) {
+      snippets.add(snippet);
+    }
+    return snippets;
   }
 
   @DeleteMapping("/snippets/{id}")
