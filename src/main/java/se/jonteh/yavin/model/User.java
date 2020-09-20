@@ -1,8 +1,11 @@
 package se.jonteh.yavin.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import javax.persistence.Entity;
@@ -11,11 +14,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.hateoas.RepresentationModel;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
+@Data @Getter @Setter
 @Entity
 public class User extends RepresentationModel<User> {
 
@@ -23,17 +26,17 @@ public class User extends RepresentationModel<User> {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private UUID id;
 
-  private UUID keycloakId;
-
-  private String userName;
-
   /**
    * Snippets that this user has created and owns.
    */
+  @JsonManagedReference
+  @JsonIgnore
   @OneToMany(orphanRemoval = true)
   Set<Snippet> snippets;
 
-  public User() {}
+  public User() {
+    this.snippets = new HashSet<>();
+  }
 
   @JsonCreator
   public User(@JsonProperty("id") String id) {
@@ -41,8 +44,7 @@ public class User extends RepresentationModel<User> {
     this.snippets = new HashSet<>();
   }
 
-  @JsonCreator
-  public User(@JsonProperty("id") UUID id) {
+  public User(UUID id){
     this.id = id;
     this.snippets = new HashSet<>();
   }
@@ -56,7 +58,15 @@ public class User extends RepresentationModel<User> {
   }
 
   @Override
-  public String toString() {
-    return "{\"id\": \"" + id.toString() + "\"}";
+  public boolean equals(Object obj) {
+    if (obj instanceof User) {
+      return super.equals(obj) == this.id.equals(((User) obj).getId());
+    }
+    return false;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id);
   }
 }
