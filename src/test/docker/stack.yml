@@ -1,0 +1,24 @@
+# docker-compose
+version: '3.8'
+
+services:
+  db:
+    image: postgres
+    env_file:
+      - database.env
+    volumes:
+      - ../data/db/volume:/var/lib/postgresql/data
+      - ../data/populate-db:/docker-entrypoint-initdb.d/
+    ports:
+      - "8001:5432"
+
+  keycloak:
+    image: jboss/keycloak
+    env_file:
+      - keycloak.env
+    volumes:
+      - ../data/keycloak/realm:/tmp/realm
+    ports:
+      - "8002:8080"
+    links:
+      - "database:db"
