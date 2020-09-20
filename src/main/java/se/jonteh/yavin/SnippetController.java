@@ -39,11 +39,12 @@ public class SnippetController {
 
   @GetMapping("/snippets/{id}")
   @Cacheable
-  public Snippet getSnippet(@PathVariable("id") UUID id, HttpServletResponse response)
-      throws NotFoundException {
-    Optional<Snippet> snippet = snippetRepo.findById(id);
-    if (snippet.isEmpty()) throw new NotFoundException(SNIPPETS + id.toString(), "");
-    return snippet.get();
+  public Snippet getSnippet(@PathVariable("id") UUID id, HttpServletRequest request,
+                            HttpServletResponse response) throws HttpErrorException {
+    User caller = getCaller(request.getRemoteUser());
+    Snippet snippet = getSnippetFromId(id, "");
+    if (!snippet.canModify(caller)) throw new NotFoundException();
+    return snippet;
   }
 
   @RolesAllowed({"user"})
