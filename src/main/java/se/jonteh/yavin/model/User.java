@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -33,6 +34,9 @@ public class User extends RepresentationModel<User> {
   @JsonIgnore
   @OneToMany(orphanRemoval = true)
   Set<Snippet> snippets;
+
+  private LocalDateTime firstAccess;
+  private LocalDateTime mostRecentAccess;
 
   public User() {
     this.snippets = new HashSet<>();

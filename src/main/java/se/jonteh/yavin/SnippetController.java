@@ -56,6 +56,8 @@ public class SnippetController {
       caller = getCaller(request.getRemoteUser());
     } catch (ForbiddenException e) {
       User newUser = new User(request.getRemoteUser());
+      newUser.setFirstAccess(LocalDateTime.now(Clock.systemUTC()));
+      newUser.setMostRecentAccess(LocalDateTime.now(Clock.systemUTC()));
       caller = userRepo.save(newUser);
     }
 
@@ -77,8 +79,8 @@ public class SnippetController {
                                HttpServletRequest request, HttpServletResponse response)
       throws HttpErrorException {
 
-    User caller = getCaller(request.getRemoteUser());
-    Snippet existing = getSnippetFromId(id, SNIPPETS + id.toString());
+    final User caller = getCaller(request.getRemoteUser());
+    final Snippet existing = getSnippetFromId(id, SNIPPETS + id.toString());
 
     // Check if user don't have access to modify this snippet
     if (!existing.canModify(caller)) throw new ForbiddenException();
@@ -98,20 +100,25 @@ public class SnippetController {
   @RolesAllowed("user")
   @GetMapping("/snippets")
   public List<Snippet> getAllSnippets(HttpServletRequest request) throws ForbiddenException {
-    User caller = getCaller(request.getRemoteUser());
+    final User caller = getCaller(request.getRemoteUser());
     return new LinkedList<>(caller.getSnippets());
   }
 
   @DeleteMapping("/snippets/{id}")
   public void deleteSnippet(@PathVariable("id") UUID id, HttpServletRequest request, HttpServletResponse response)
       throws HttpErrorException {
-    User caller = getCaller(request.getRemoteUser());
-    Snippet existing = getSnippetFromId(id, SNIPPETS + id.toString());
+    final User caller = getCaller(request.getRemoteUser());
+    final Snippet existing = getSnippetFromId(id, SNIPPETS + id.toString());
 
     // Check if user don't have access to delete this snippet
     if (!existing.canModify(caller)) throw new ForbiddenException();
 
+    // Remove the snippet
     snippetRepo.delete(existing);
+
+    // Update the user so that the snippet no longer exists there
+    caller.removeSnippet(existing);
+    userRepo.save(caller);
     response.setStatus(HttpServletResponse.SC_OK);
   }
 
@@ -130,13 +137,14 @@ public class SnippetController {
     if (id == null) throw new BadRequestException();
 
     // Verify that the snippet with the provided ID exists
-    Optional<Snippet> optSnippet = snippetRepo.findById(id);
+    final Optional<Snippet> optSnippet = snippetRepo.findById(id);
     if (optSnippet.isEmpty()) throw new NotFoundException(path, "");
     return optSnippet.get();
   }
 
   /**
-   * Checks a calling user if it exists within this service.
+   * Checks a calling user if it exists within this service. If the user exists we also update the
+   * user entity in the database with a new mostRecentAccess value.
    *
    * @param callingUserId The UUID of the calling user (the user id from Keycloak)
    * @return The calling user if it exists
@@ -144,8 +152,10 @@ public class SnippetController {
    */
   private User getCaller(String callingUserId) throws ForbiddenException {
     // Verify that the user exists
-    Optional<User> optionalUser = userRepo.findById(UUID.fromString(callingUserId));
+    final Optional<User> optionalUser = userRepo.findById(UUID.fromString(callingUserId));
     if (optionalUser.isEmpty()) throw new ForbiddenException();
-    return optionalUser.get();
+    final User caller = optionalUser.get();
+    caller.setMostRecentAccess(LocalDateTime.now(Clock.systemUTC()));
+    return userRepo.save(caller);
   }
 }
