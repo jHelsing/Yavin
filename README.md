@@ -24,3 +24,16 @@
   - Add Github Action for integration tests
   - Add JaCoCo test coverage to Gradle
   - Add Github Action for SonarCloud
+  
+
+https://spring.io/guides/gs/testing-restdocs/
+https://spring.io/guides/gs/rest-hateoas/
+https://spring.io/guides/tutorials/bookmarks/
+https://spring.io/guides/gs/securing-web/
+https://www.baeldung.com/spring-mvc-annotations
+https://medium.com/devops-dudes/securing-spring-boot-rest-apis-with-keycloak-1d760b2004e
+https://hub.docker.com/_/postgres
+https://hub.docker.com/r/jboss/keycloak/
+https://stackoverflow.com/questions/31746182/docker-compose-wait-for-container-x-before-starting-y
+
+
