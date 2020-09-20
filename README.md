@@ -44,34 +44,34 @@ was used during development of the authentication and Keycloak integration.
   - [x] Add firstAccess and mostRecentAccess date to users
 - [x] Implement the endpoints that we have now, so that they are correct and 
   only show what they should. 
-- [] Add HATEOAS support, see further 
-  - [] https://spring.io/guides/gs/rest-hateoas/
-  - [] https://spring.io/guides/tutorials/bookmarks/
-- [] Look into how we can have different representations of Snippet depending on which endpoint the user calls. 
+- [ ] Add HATEOAS support, see further 
+  - [ ] https://spring.io/guides/gs/rest-hateoas/
+  - [ ] https://spring.io/guides/tutorials/bookmarks/
+- [ ] Look into how we can have different representations of Snippet depending on which endpoint the user calls. 
   E.g. maybe we don't want to send the entire snippet content for each snippet when we list all available snippets.
 - [X] Sort out handling of JSON when creating and updating snippets.
       *This became a no-issue.*
-- [] Create a documentation service which holds API documentation + error
+- [ ] Create a documentation service which holds API documentation + error
   descriptions as stated in RFC-7807 *type* member. 
   https://tools.ietf.org/html/rfc7807
   https://spring.io/guides/gs/testing-restdocs/
-- [] Extend the error handling controller for snippets.
-- [] Add support for public/private snippets
-  - [] introduce the variable in the snippet object
-  - [] Add a list endpoint of public snippets
-- [] Introduce logging
-- [] Different database configurations depending on test or production.
-  - [] https://spring.io/guides/gs/accessing-data-mysql/
-  - [] h2 database for tests
-  - [] Don't mind production database yet
-- [] Introduce tests
-- [] Github Action for running checkstyle, unit tests and integration tests
-  - [] Add integration test config in Gradle for XXXIT
-  - [] Add Github Action for checkstyle
-  - [] Add Github Action for unit tests
-  - [] Add Github Action for integration tests
-  - [] Add JaCoCo test coverage to Gradle
-  - [] Add Github Action for SonarCloud
+- [ ] Extend the error handling controller for snippets.
+- [ ] Add support for public/private snippets
+  - [ ] introduce the variable in the snippet object
+  - [ ] Add a list endpoint of public snippets
+- [ ] Introduce logging
+- [ ] Different database configurations depending on test or production.
+  - [ ] https://spring.io/guides/gs/accessing-data-mysql/
+  - [ ] h2 database for tests
+  - [ ] Don't mind production database yet
+- [ ] Introduce tests
+- [ ] Github Action for running checkstyle, unit tests and integration tests
+  - [ ] Add integration test config in Gradle for XXXIT
+  - [ ] Add Github Action for checkstyle
+  - [ ] Add Github Action for unit tests
+  - [ ] Add Github Action for integration tests
+  - [ ] Add JaCoCo test coverage to Gradle
+  - [ ] Add Github Action for SonarCloud
 
 # Coding guidelines
 - Authorization & Roles: Most users should be able to access everything and will have the role *user*.
