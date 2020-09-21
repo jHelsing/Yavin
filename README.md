@@ -44,6 +44,7 @@ was used during development of the authentication and Keycloak integration.
   - [x] Add firstAccess and mostRecentAccess date to users
 - [x] Implement the endpoints that we have now, so that they are correct and 
   only show what they should. 
+- [ ] Introduce logging
 - [ ] Add HATEOAS support, see further 
   - [ ] https://spring.io/guides/gs/rest-hateoas/
   - [ ] https://spring.io/guides/tutorials/bookmarks/
@@ -59,7 +60,7 @@ was used during development of the authentication and Keycloak integration.
 - [ ] Add support for public/private snippets
   - [ ] introduce the variable in the snippet object
   - [ ] Add a list endpoint of public snippets
-- [ ] Introduce logging
+- [ ] Improve traceability to Snippets with changes and history of snippets.
 - [ ] Different database configurations depending on test or production.
   - [ ] https://spring.io/guides/gs/accessing-data-mysql/
   - [ ] h2 database for tests
@@ -72,6 +73,9 @@ was used during development of the authentication and Keycloak integration.
   - [ ] Add Github Action for integration tests
   - [ ] Add JaCoCo test coverage to Gradle
   - [ ] Add Github Action for SonarCloud
+- [ ] Set up another microservice which can support auth so we avoid the large Keycloak url etc.
+- [ ] Set up a proxy/loadbalancer for the backend APIs so we can have VIRTUAL_HOSTS etc. to direct traffic in a good way.
+- [ ] Make Yavin work with redundancy
 
 # Coding guidelines
 - Authorization & Roles: Most users should be able to access everything and will have the role *user*.
