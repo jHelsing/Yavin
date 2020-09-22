@@ -76,6 +76,13 @@ was used during development of the authentication and Keycloak integration.
 - [ ] Set up another microservice which can support auth so we avoid the large Keycloak url etc.
 - [ ] Set up a proxy/loadbalancer for the backend APIs so we can have VIRTUAL_HOSTS etc. to direct traffic in a good way.
 - [ ] Make Yavin work with redundancy
+- [ ] Add SMTP server to stack for Keycloak
+- [ ] Set up a production environment
+  - [ ] Prepare desktop server to act as production server
+    - [ ] Set up SSH
+    - [ ] Set up Docker environment
+  - [ ] Redirect snippets.jonteh.se to production server
+  - [ ] 
 
 # Coding guidelines
 - Authorization & Roles: Most users should be able to access everything and will have the role *user*.
