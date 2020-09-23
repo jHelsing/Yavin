@@ -76,14 +76,16 @@ was used during development of the authentication and Keycloak integration.
 - [ ] Set up another microservice which can support auth so we avoid the large Keycloak url etc.
 - [ ] Set up a proxy/loadbalancer for the backend APIs so we can have VIRTUAL_HOSTS etc. to direct traffic in a good way.
 - [ ] Make Yavin work with redundancy
+- [ ] Look into Spring Boot monitoring
+  - [ ] Add a status endpoint with various technical status information. Possible snippets.jonteh.se/api/status, where other endpoints would be snippets.jonteh.se/api/snippets...
+  - [ ] Look into Pormetheus for Spring, PostgreSql, HAProxy, Docker, Hosts https://prometheus.io/docs/instrumenting/exporters/
 - [ ] Add SMTP server to stack for Keycloak
 - [ ] Set up a production environment
   - [ ] Prepare desktop server to act as production server
     - [ ] Set up SSH
     - [ ] Set up Docker environment
+  - [ ] Set up monitoring on Raspberry Pi
   - [ ] Redirect snippets.jonteh.se to production server
- - [ ] Look into Spring Boot monitoring
-  - [ ] Add a status endpoint with various technical status information. Possible snippets.jonteh.se/api/status, where other endpoints would be snippets.jonteh.se/api/snippets...
 - [ ] GET /snippets should give all the public snippets that exist. Sortable and pagnintaion should be enabled.
 - [ ] users/id should give detailed information on the user but not the listof snippets and labels but only information such as number of public and hidden snippets and labels.
 - [ ] Snippets should have a language property. Figure our what this property should be. Most likely another Object that has the language name and syntax highlight information and other important information for the editor. Look into how we can have an editor, what information one might need.
