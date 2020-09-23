@@ -82,7 +82,11 @@ was used during development of the authentication and Keycloak integration.
     - [ ] Set up SSH
     - [ ] Set up Docker environment
   - [ ] Redirect snippets.jonteh.se to production server
-  - [ ] 
+ - [ ] Look into Spring Boot monitoring
+  - [ ] Add a status endpoint with various technical status information. Possible snippets.jonteh.se/api/status, where other endpoints would be snippets.jonteh.se/api/snippets...
+- [ ] GET /snippets should give all the public snippets that exist. Sortable and pagnintaion should be enabled.
+- [ ] users/id should give detailed information on the user but not the listof snippets and labels but only information such as number of public and hidden snippets and labels.
+- [ ] Snippets should have a language property. Figure our what this property should be. Most likely another Object that has the language name and syntax highlight information and other important information for the editor. Look into how we can have an editor, what information one might need.
 
 # Coding guidelines
 - Authorization & Roles: Most users should be able to access everything and will have the role *user*.
