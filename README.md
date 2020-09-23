@@ -52,6 +52,7 @@ was used during development of the authentication and Keycloak integration.
   E.g. maybe we don't want to send the entire snippet content for each snippet when we list all available snippets.
 - [X] Sort out handling of JSON when creating and updating snippets.
       *This became a no-issue.*
+- [ ] Look into using ElasticSearch for snippets and labels
 - [ ] Create a documentation service which holds API documentation + error
   descriptions as stated in RFC-7807 *type* member. 
   https://tools.ietf.org/html/rfc7807
