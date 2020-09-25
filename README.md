@@ -79,7 +79,7 @@ was used during development of the authentication and Keycloak integration.
 - [ ] Make Yavin work with redundancy
 - [ ] Look into Spring Boot monitoring
   - [ ] Add a status endpoint with various technical status information. Possible snippets.jonteh.se/api/status, where other endpoints would be snippets.jonteh.se/api/snippets...
-  - [ ] Look into Pormetheus for Spring, PostgreSql, HAProxy, Docker, Hosts https://prometheus.io/docs/instrumenting/exporters/. Maybe can use something like Elastic Metricbeats together with ElasticSearch for managing the monitoring data?
+  - [ ] Look into Pormetheus for Spring, PostgreSql, HAProxy, Docker, Hosts https://prometheus.io/docs/instrumenting/exporters/. Maybe can use something like Elastic Metricbeats together with Elasticsearch for managing the monitoring data? We have https://www.elastic.co/guide/en/elasticsearch/reference/6.5/cluster-nodes-stats.html for node stats and https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-health.html for entire Elasticsearch cluster.
 - [ ] Add SMTP server to stack for Keycloak
 - [ ] Set up a production environment
   - [ ] Prepare desktop server to act as production server
