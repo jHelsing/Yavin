@@ -39,25 +39,6 @@ The following [guide](https://medium.com/devops-dudes/securing-spring-boot-rest-
 was used during development of the authentication and Keycloak integration.
 
 # ToDo
-- [x] Introduce traceability to Snippets and Users
-  - [x] Add created and modified date to Snippets
-  - [x] Add firstAccess and mostRecentAccess date to users
-- [x] Implement the endpoints that we have now, so that they are correct and 
-  only show what they should. 
-- [ ] Introduce logging
-- [ ] Add HATEOAS support, see further 
-  - [ ] https://spring.io/guides/gs/rest-hateoas/
-  - [ ] https://spring.io/guides/tutorials/bookmarks/
-- [ ] Look into how we can have different representations of Snippet depending on which endpoint the user calls. 
-  E.g. maybe we don't want to send the entire snippet content for each snippet when we list all available snippets.
-- [X] Sort out handling of JSON when creating and updating snippets.
-      *This became a no-issue.*
-- [ ] Look into using ElasticSearch for snippets and labels
-- [ ] Create a documentation service which holds API documentation + error
-  descriptions as stated in RFC-7807 *type* member. 
-  https://tools.ietf.org/html/rfc7807
-  https://spring.io/guides/gs/testing-restdocs/
-- [ ] Extend the error handling controller for snippets.
 - [ ] Add support for public/private snippets
   - [ ] introduce the variable in the snippet object
   - [ ] Add a list endpoint of public snippets
